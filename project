@@ -1,0 +1,15 @@
+import firebase from 'firebase'
+
+  var config = {
+    apiKey: "AIzaSyDMknReY-wtjtkdxGzTn4A4QLvJ_QgYyac",
+    authDomain: "chareatable.firebaseapp.com",
+    databaseURL: "https://chareatable.firebaseio.com",
+    projectId: "chareatable",
+    storageBucket: "chareatable.appspot.com",
+    messagingSenderId: "323326536471"
+  };
+  const app = firebase.initializeApp(config);
+  app.firestore().settings({
+    timestampsInSnapshots: true
+  });
+  export default app.firestore();
