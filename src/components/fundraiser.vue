@@ -17,7 +17,7 @@
       <h4 class="section-head">Restaurant Name</h4>
       <p class="content">{{restaurant}}</p>
       <router-link :to="{ name: 'edit-fundraiser', params: { name: fname }}">
-      <button v-if="userCheck" class="btn btn-primary btn-lg btn-block col-md-3">Update</button>
+      <button v-if="user.uname == organizer" class="btn btn-primary btn-lg btn-block col-md-3">Update</button>
       </router-link>
     </div>
   </main>
