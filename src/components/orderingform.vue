@@ -4,7 +4,7 @@
             <form v-if="user">
               <div class="row">
                 <div class="col-md-auto mb-3">
-                  <label for="username">items</label>
+                  <label for="items">items</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <!--<span class="input-group-text">@</span>
@@ -22,12 +22,12 @@
                 </div> -->
               </div>
               <div class="mb-3">
-                <label for="bio">method</label>
+                <label for="method">method</label>
                 <select name ="delivery" size = "2">
                     <option value = "pick-up">pick-up</option>
                     <option value = "delivery">delivery</option>
                   </select>
-                  <label for="bio">payment</label>
+                  <label for="payment">payment</label>
                   <select name ="payment" size = "2">
                       <option value = "cash">card</option>
                       <option value = "card">card</option>
@@ -36,30 +36,22 @@
               </div>
               <div class="row">
                 <div class="col-md-4 mb-3">
-                  <label for="city">Comment</label>
+                  <label for="comment">Comment</label>
                   <input type="text" class="form-control" id="city" v-model="comment">
                 </div>
                 <div class="col-md-4 mb-3">
-                  <label for="state">Card number</label>
+                  <label for="card">Card number</label>
                   <input type="text" class="form-control" id="state" v-model="card">
                 </div>
                 <div class="col-md-4 mb-3">
-                  <label for="country">address</label>
+                  <label for="address">address</label>
                   <input type="text" class="form-control" id="country" v-model="address">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4 mb-3">
-                  <label for="city">recipient</label>
+                  <label for="recipient">recipient</label>
                   <input type="text" class="form-control" id="city" v-model="recipient">
-                </div>
-                <div class="col-md-4 mb-3">
-                  <label for="state"></label>
-                  <input type="text" class="form-control" id="state" v-model="endDay">
-                </div>
-                <div class="col-md-4 mb-3">
-                  <label for="country"></label>
-                  <input type="text" class="form-control" id="country" v-model="endYear" placeholder="yy">
                 </div>
               </div>
 
