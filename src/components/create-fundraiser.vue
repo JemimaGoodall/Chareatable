@@ -28,35 +28,35 @@
               <div class="row">
                 <div class="col-md-4 mb-3">
                   <label for="city">Start Date</label>
-                  <input type="text" class="form-control" id="city" v-model="city" placeholder="mm">
+                  <input type="text" class="form-control" id="city" v-model="startMonth" placeholder="mm">
                 </div>
                 <div class="col-md-4 mb-3">
                   <label for="state"></label>
-                  <input type="text" class="form-control" id="state" v-model="stt" placeholder="dd">
+                  <input type="text" class="form-control" id="state" v-model="startDay" placeholder="dd">
                 </div>
                 <div class="col-md-4 mb-3">
                   <label for="country"></label>
-                  <input type="text" class="form-control" id="country" v-model="country" placeholder="yy">
+                  <input type="text" class="form-control" id="country" v-model="startYear" placeholder="yy">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4 mb-3">
                   <label for="city">End Date</label>
-                  <input type="text" class="form-control" id="city" v-model="city" placeholder="mm">
+                  <input type="text" class="form-control" id="city" v-model="endMonth" placeholder="mm">
                 </div>
                 <div class="col-md-4 mb-3">
                   <label for="state"></label>
-                  <input type="text" class="form-control" id="state" v-model="stt" placeholder="dd">
+                  <input type="text" class="form-control" id="state" v-model="endDay" placeholder="dd">
                 </div>
                 <div class="col-md-4 mb-3">
                   <label for="country"></label>
-                  <input type="text" class="form-control" id="country" v-model="country" placeholder="yy">
+                  <input type="text" class="form-control" id="country" v-model="endYear" placeholder="yy">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4 mb-3">
                   <label for="number">Restaurant</label>
-                  <input type="text" class="form-control" id="number" v-model="number">
+                  <input type="text" class="form-control" id="number" v-model="Restaurant">
                 </div>
 
               </div>
