@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-            <h4 class="mb-3">Create Fundraiser</h4>
+            <h4 class="mb-3">Order Food</h4>
             <form v-if="user">
               <div class="row">
                 <div class="col-md-auto mb-3">
-                  <label for="username">Fundraiser name</label>
+                  <label for="username">items</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">@</span>
+                      <!--<span class="input-group-text">@</span>
                     </div>
                     <input type="text" class="form-control" id="username" v-model="fname" @input="checkAvailability()">
                     <div class="availability">
@@ -19,46 +19,48 @@
                   <p v-if="fnameempty" class="red availability">Enter a Username</p>
                   <p v-else-if="available" class="green availability">Name available!</p>
                   <p v-else-if="unavailable" class="red availability">Name unavailable!</p>
-                </div>
+                </div> -->
               </div>
               <div class="mb-3">
-                <label for="bio">Fundraising description</label>
-                <textarea class="form-control" rows="5" id="bio" v-model="description"></textarea>
+                <label for="bio">method</label>
+                <select name ="delivery" size = "2">
+                    <option value = "pick-up">pick-up</option>
+                    <option value = "delivery">delivery</option>
+                  </select>
+                  <label for="bio">payment</label>
+                  <select name ="payment" size = "2">
+                      <option value = "cash">card</option>
+                      <option value = "card">card</option>
+                    </select>
+                <!--<textarea class="form-control" rows="5" id="bio" v-model="method"></textarea>-->
               </div>
               <div class="row">
                 <div class="col-md-4 mb-3">
-                  <label for="city">Start Date</label>
-                  <input type="text" class="form-control" id="city" v-model="startMonth" placeholder="mm">
+                  <label for="city">Comment</label>
+                  <input type="text" class="form-control" id="city" v-model="comment">
                 </div>
                 <div class="col-md-4 mb-3">
-                  <label for="state"></label>
-                  <input type="text" class="form-control" id="state" v-model="startDay" placeholder="dd">
+                  <label for="state">Card number</label>
+                  <input type="text" class="form-control" id="state" v-model="card">
                 </div>
                 <div class="col-md-4 mb-3">
-                  <label for="country"></label>
-                  <input type="text" class="form-control" id="country" v-model="startYear" placeholder="yy">
+                  <label for="country">address</label>
+                  <input type="text" class="form-control" id="country" v-model="address">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4 mb-3">
-                  <label for="city">End Date</label>
-                  <input type="text" class="form-control" id="city" v-model="endMonth" placeholder="mm">
+                  <label for="city">recipient</label>
+                  <input type="text" class="form-control" id="city" v-model="recipient">
                 </div>
                 <div class="col-md-4 mb-3">
                   <label for="state"></label>
-                  <input type="text" class="form-control" id="state" v-model="endDay" placeholder="dd">
+                  <input type="text" class="form-control" id="state" v-model="endDay">
                 </div>
                 <div class="col-md-4 mb-3">
                   <label for="country"></label>
                   <input type="text" class="form-control" id="country" v-model="endYear" placeholder="yy">
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4 mb-3">
-                  <label for="number">Restaurant</label>
-                  <input type="text" class="form-control" id="number" v-model="restaurant">
-                </div>
-
               </div>
 
 
@@ -72,10 +74,10 @@
 import firebase from 'firebase'
 import db from '@/firebase/init.js'
 export default {
-  name: 'createfundraiser',
+  name: 'order',
   computed:{
     user () {
-      return this.$store.state.user
+      return this.$store.state.fundraisers
     }
   },
   methods: {
@@ -122,23 +124,24 @@ export default {
       available: null,
       unavailable: null,
       fnameempty: null,
-
+      creator: null
     }
   },
   mounted: function(){
     this.checkAvailability()
   },
   async created(){
-    let fundraiser = await db.collection('fundraisers').where("fname" == this.fname).get()
-    this.description = fundraiser.description,
-    this.startMonth = fundraiser.startMonth,
-    this.startDay = fundraiser.startDay,
-    this.startYear = fundraiser.startYear,
-    this.endMonth = fundraiser.endMonth,
-    this.endDay = fundraiser.endDay,
-    this.endYear = fundraiser.endYear,
-    this.restaurant = fundraiser.restaurant,
-    this.fname = fundraiser.fname,
+    let fundraiser = await db.collection('fundraisers').where("fname" == "this.fname").get()
+    this.description = fundraiser.description
+    this.startMonth = fundraiser.startMonth
+    this.startDay = fundraiser.startDay
+    this.startYear = fundraiser.startYear
+    this.endMonth = fundraiser.endMonth
+    this.endDay = fundraiser.endDay
+    this.endYear = fundraiser.endYear
+    this.restaurant = fundraiser.restaurant
+    this.fname = fundraiser.fname
+    this.creator = fundraiser.creator
   }
 }
 </script>

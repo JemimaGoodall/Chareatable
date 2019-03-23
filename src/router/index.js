@@ -34,7 +34,7 @@ const router = new Router({
       component: profile
     },
     {
-      path: '/editfundraiser',
+      path: '/editfundraiser/:name',
       name: 'editfundraiser',
       component: editfundraiser
     },
