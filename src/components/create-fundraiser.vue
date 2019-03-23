@@ -130,15 +130,15 @@ export default {
   },
   async created(){
     let fundraiser = await db.collection('fundraisers').where("fname" == this.fname).get()
-    this.description = fundraiser.description,
-    this.startMonth = fundraiser.startMonth,
-    this.startDay = fundraiser.startDay,
-    this.startYear = fundraiser.startYear,
-    this.endMonth = fundraiser.endMonth,
-    this.endDay = fundraiser.endDay,
-    this.endYear = fundraiser.endYear,
-    this.restaurant = fundraiser.restaurant,
-    this.fname = fundraiser.fname,
+    this.description = fundraiser.description
+    this.startMonth = fundraiser.startMonth
+    this.startDay = fundraiser.startDay
+    this.startYear = fundraiser.startYear
+    this.endMonth = fundraiser.endMonth
+    this.endDay = fundraiser.endDay
+    this.endYear = fundraiser.endYear
+    this.restaurant = fundraiser.restaurant
+    this.fname = fundraiser.fname
   }
 }
 </script>
