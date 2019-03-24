@@ -80,6 +80,7 @@ export default {
   },
   methods: {
     async updateProfile () {
+
       const ref = db.collection('fundraisers')
       await ref.update({
         description: this.description,
@@ -91,14 +92,17 @@ export default {
         endYear: this.endYear
         restaurant: this.restaurant,
         fname: this.fname,
+
       })
       this.$router.push({ name: "fundraiser", params: { fname: this.fname }})
     },
     async checkAvailability () {
+
       let checkname = await db.collection('fundraisers').where("fname", "==", this.fname).get()
       if (this.fname == null || this.fname == "") {
         this.fnameempty = true
       } else if (checkname.empty) {
+
         this.available = true
         this.fnameempty = false
         this.unavailable = false
@@ -124,12 +128,14 @@ export default {
       available: null,
       unavailable: null,
       fnameempty: null,
+
     }
   },
   mounted: function(){
     this.checkAvailability()
   },
   async created(){
+
     let fundraiser = await db.collection('fundraisers').where("fname" == this.fname).get()
     this.description = fundraiser.description
     this.startMonth = fundraiser.startMonth
@@ -139,6 +145,7 @@ export default {
     this.endDay = fundraiser.endDay
     this.endYear = fundraiser.endYear
     this.restaurant = fundraiser.restaurant
+
   }
 }
 </script>

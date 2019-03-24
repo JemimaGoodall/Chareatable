@@ -1,0 +1,14 @@
+[debug] [2019-03-23T22:01:34.847Z] ----------------------------------------------------------------------
+[debug] [2019-03-23T22:01:34.849Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2019-03-23T22:01:34.850Z] CLI Version:   6.5.0
+[debug] [2019-03-23T22:01:34.850Z] Platform:      darwin
+[debug] [2019-03-23T22:01:34.850Z] Node Version:  v10.15.3
+[debug] [2019-03-23T22:01:34.850Z] Time:          Sat Mar 23 2019 18:01:34 GMT-0400 (Eastern Daylight Time)
+[debug] [2019-03-23T22:01:34.851Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-03-23T22:01:34.869Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-23T22:01:34.869Z] > authorizing via signed-in user
+[debug] [2019-03-23T22:01:34.870Z] [iam] checking project chareatable for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-03-23T22:01:34.871Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-03-23T22:01:34.871Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
