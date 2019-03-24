@@ -64,7 +64,7 @@
 
               <hr class="mb-4">
             </form>
-            <button :disabled="unavailable||unameempty" class="btn btn-primary btn-lg btn-block col-md-3" type="submit" @click="updateProfile()">Update</button>
+            <button :disabled="unavailable||fnameempty" class="btn btn-primary btn-lg btn-block col-md-3" type="submit" @click="updateProfile()">Update</button>
           </div>
 </template>
 
@@ -93,7 +93,7 @@ export default {
         fname: this.fname,
         creator: this.user.uname
       })
-      this.$router.push({ name: "fundraiser", params: { fname: this.fname }})
+      this.$router.push({ name: "fundraiser", params: { name: this.fname }})
     },
     async checkAvailability () {
       let checkname = await db.collection('fundraisers').where("fname", "==", this.fname).get()
@@ -117,6 +117,9 @@ export default {
       startMonth: null,
       startDay: null,
       startYear: null,
+      endDay: null,
+      endYear: null,
+      endMonth: null,
       restaurant: null,
       fname: null,
       available: null,
@@ -128,18 +131,6 @@ export default {
   mounted: function(){
     this.checkAvailability()
   },
-  async created(){
-    let fundraiser = await db.collection('fundraisers').where("fname" == this.fname).get()
-    this.description = fundraiser.description
-    this.startMonth = fundraiser.startMonth
-    this.startDay = fundraiser.startDay
-    this.startYear = fundraiser.startYear
-    this.endMonth = fundraiser.endMonth
-    this.endDay = fundraiser.endDay
-    this.endYear = fundraiser.endYear
-    this.restaurant = fundraiser.restaurant
-    this.fname = fundraiser.fname
-  }
 }
 </script>
 

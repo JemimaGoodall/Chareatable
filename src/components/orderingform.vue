@@ -7,7 +7,7 @@
                   <label for="items">items</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <!--<span class="input-group-text">@</span>
+                      <span class="input-group-text">@</span>
                     </div>
                     <input type="text" class="form-control" id="username" v-model="fname" @input="checkAvailability()">
                     <div class="availability">
@@ -19,7 +19,7 @@
                   <p v-if="fnameempty" class="red availability">Enter a Username</p>
                   <p v-else-if="available" class="green availability">Name available!</p>
                   <p v-else-if="unavailable" class="red availability">Name unavailable!</p>
-                </div> -->
+                </div>
               </div>
               <div class="mb-3">
                 <label for="method">method</label>
@@ -32,7 +32,7 @@
                       <option value = "cash">card</option>
                       <option value = "card">card</option>
                     </select>
-                <!--<textarea class="form-control" rows="5" id="bio" v-model="method"></textarea>-->
+                <textarea class="form-control" rows="5" id="bio" v-model="method"></textarea>
               </div>
               <div class="row">
                 <div class="col-md-4 mb-3">
@@ -58,7 +58,7 @@
 
               <hr class="mb-4">
             </form>
-            <button class="btn btn-primary btn-lg btn-block col-md-3" type="submit" @click="EDITTHIS!!!()">Order</button>
+            <button class="btn btn-primary btn-lg btn-block col-md-3" type="submit" @click="crap()">Order</button>
           </div>
 </template>
 
@@ -69,7 +69,7 @@ export default {
   name: 'order',
   computed:{
     user () {
-      return this.$store.state.fundraisers
+      return this.$store.state.user
     }
   },
   methods: {
@@ -87,6 +87,9 @@ export default {
         this.fnameempty = false
         this.unavailable = true
       }
+    },
+    async crap(){
+      return null;
     }
   },
   data () {

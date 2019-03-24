@@ -16,7 +16,7 @@
             <div class="card-header">
               <h2 class="my-0 font-weight-normal">{{restaurant.name}}</h2></div>
             <div class="card-body">
-              <router-link :to="{ name: 'menu', params: {apikey: restaurant.apiKey} }">
+              <router-link :to="{ name: 'menu', params: {apikey: restaurant.apiKey, restname: restaurant.name} }">
                 <button class="btn btn-lg btn-block btn-primary">View menu</button>
               </router-link>
             </div>
@@ -74,7 +74,7 @@ export default {
       this.errors.push(e)
     })
     let restList = await db.collection('fundraisers').get()
-    this.databaseData = restList.docs.map(x => x.data().name);
+    this.databaseData = restList.docs.map(x => x.data().restaurant);
     for (var i = 0; i < this.apiResponse.length; i++) {
       if (this.databaseData.includes(this.apiResponse[i].name)) {
         this.resto.push(this.apiResponse[i]);

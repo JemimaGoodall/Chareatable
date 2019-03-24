@@ -13,10 +13,10 @@
       <p class="content">{{endDay}}</p>
       <p class="content">{{endYear}}</p>
       <h4 class="section-head">Fundraising Organizer</h4>
-      <p class="content">{{creator}}</p>
+      <p class="content">{{organizer}}</p>
       <h4 class="section-head">Restaurant Name</h4>
       <p class="content">{{restaurant}}</p>
-      <router-link :to="{ name: 'edit-fundraiser', params: { name: fname }}">
+      <router-link :to="{ name: 'editfundraiser', params: { name: fname }}">
       <button v-if="user.uname == organizer" class="btn btn-primary btn-lg btn-block col-md-3">Update</button>
       </router-link>
     </div>
@@ -27,7 +27,7 @@
 import firebase from 'firebase'
 import db from '@/firebase/init.js'
 export default {
-  name: 'edit-fundraiser',
+  name: 'fundraiser',
   computed:{
     user () {
       return this.$store.state.user
@@ -42,7 +42,7 @@ export default {
       startYear: null,
       endMonth: null,
       endDay: null,
-      endDayYear: null,
+      endYear: null,
       organizer: null,
       restaurant: null
     }
@@ -55,9 +55,9 @@ export default {
     this.startYear = fundraiser.docs[0].data().startYear
     this.endMonth = fundraiser.docs[0].data().endMonth
     this.endDay = fundraiser.docs[0].data().endDay
-    this.endYear = fundraiser.docs[0].data().endDayYear
+    this.endYear = fundraiser.docs[0].data().endYear
     this.restaurant = fundraiser.docs[0].data().restaurant
-    this.organizer = finduser.docs[0].data().creator
+    this.organizer = fundraiser.docs[0].data().creator
   }
 }
 </script>

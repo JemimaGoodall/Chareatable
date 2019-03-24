@@ -14,13 +14,8 @@
       <p class="content">{{number}}</p>
       <h4 class="section-head">Current Affiliation</h4>
       <p class="content">{{affiliation}}</p>
-      <h4 class="section-head">Fundraiser</h4>
-      <p class="content">{{fundraiser}}</p>
       <router-link to="/editprofile">
       <button v-if="userCheck" class="btn btn-primary btn-lg btn-block col-md-3">Update profile</button>
-      </router-link>
-      <router-link to="/editfundraiser/">
-      <button v-if="userCheck" class="btn btn-primary btn-lg btn-block col-md-3">Update fundraiser</button>
       </router-link>
     </div>
   </main>
@@ -46,7 +41,6 @@ export default {
       country: null,
       number: null,
       affiliation: null,
-      fundraiser: null,
       userCheck: null
     }
   },
@@ -58,7 +52,6 @@ export default {
     this.country = finduser.docs[0].data().country
     this.number = finduser.docs[0].data().number
     this.affiliation = finduser.docs[0].data().affiliation
-    this.fundraiser = finduser.docs[0].data().fundraiser
     this.displayname = finduser.docs[0].data().displayName
     if (this.$route.params.uname == this.user.uname) {
       this.userCheck = true

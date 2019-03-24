@@ -10,6 +10,7 @@ import fundraiser from '@/components/fundraiser'
 import editfundraiser from '@/components/edit-fundraiser'
 import createfundraiser from '@/components/create-fundraiser'
 import menu from '@/components/menu'
+import order from '@/components/orderingform'
 
 Vue.use(Router)
 
@@ -35,8 +36,13 @@ const router = new Router({
       component: profile
     },
     {
+      path: '/order/:apikey/:menuapi/:restname',
+      name: 'order',
+      component: order
+    },
+    {
 
-      path: '/menu/:apikey',
+      path: '/menu/:apikey/:restname',
       name: 'menu',
       component: menu
     },

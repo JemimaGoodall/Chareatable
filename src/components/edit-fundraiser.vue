@@ -64,7 +64,7 @@
 
               <hr class="mb-4">
             </form>
-            <button :disabled="unavailable||unameempty" class="btn btn-primary btn-lg btn-block col-md-3" type="submit" @click="updateProfile()">Update</button>
+            <button :disabled="unavailable||fnameempty" class="btn btn-primary btn-lg btn-block col-md-3" type="submit" @click="updateProfile()">Update</button>
           </div>
 </template>
 
@@ -81,27 +81,28 @@ export default {
   methods: {
     async updateProfile () {
 
-      const ref = db.collection('fundraisers')
-      await ref.update({
+      const ref = await db.collection('fundraisers').where('fname', "==", this.fname).get()
+      const reference = db.collection('fundraisers').doc(ref.docs[0].id)
+      await reference.update({
         description: this.description,
         startMonth: this.startMonth,
         startDay: this.startDay,
         startYear: this.startYear,
         endMonth: this.endMonth,
         endDay: this.endDay,
-        endYear: this.endYear
+        endYear: this.endYear,
         restaurant: this.restaurant,
         fname: this.fname,
 
       })
-      this.$router.push({ name: "fundraiser", params: { fname: this.fname }})
+      this.$router.push({ name: "fundraiser", params: { name: this.fname }})
     },
     async checkAvailability () {
 
       let checkname = await db.collection('fundraisers').where("fname", "==", this.fname).get()
       if (this.fname == null || this.fname == "") {
         this.fnameempty = true
-      } else if (checkname.empty) {
+      } else if (checkname.empty || this.fname == checkname.docs[0].data().fname) {
 
         this.available = true
         this.fnameempty = false
@@ -122,7 +123,7 @@ export default {
       startYear: null,
       endMonth: null,
       endDay: null,
-      endDayYear: null,
+      endYear: null,
       restaurant: null,
       fname: this.$route.params.name,
       available: null,
@@ -135,16 +136,15 @@ export default {
     this.checkAvailability()
   },
   async created(){
-
-    let fundraiser = await db.collection('fundraisers').where("fname" == this.fname).get()
-    this.description = fundraiser.description
-    this.startMonth = fundraiser.startMonth
-    this.startDay = fundraiser.startDay
-    this.startYear = fundraiser.startYear
-    this.endMonth = fundraiser.endMonth
-    this.endDay = fundraiser.endDay
-    this.endYear = fundraiser.endYear
-    this.restaurant = fundraiser.restaurant
+    let fundraiser = await db.collection('fundraisers').where("fname", "==", this.fname).get()
+    this.description = fundraiser.docs[0].data().description
+    this.startMonth = fundraiser.docs[0].data().startMonth
+    this.startDay = fundraiser.docs[0].data().startDay
+    this.startYear = fundraiser.docs[0].data().startYear
+    this.endMonth = fundraiser.docs[0].data().endMonth
+    this.endDay = fundraiser.docs[0].data().endDay
+    this.endYear = fundraiser.docs[0].data().endYear
+    this.restaurant = fundraiser.docs[0].data().restaurant
 
   }
 }
