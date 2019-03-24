@@ -4,7 +4,7 @@
             <form v-if="user">
               <div class="row">
                 <div class="col-md-auto mb-3">
-                  <label for="username">Fundraiser name</label>
+                  <label for="username">Fundraiser Name</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">@</span>

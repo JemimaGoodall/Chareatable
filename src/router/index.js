@@ -9,6 +9,7 @@ import profile from '@/components/profile'
 import fundraiser from '@/components/fundraiser'
 import editfundraiser from '@/components/edit-fundraiser'
 import createfundraiser from '@/components/create-fundraiser'
+import menu from '@/components/menu'
 
 Vue.use(Router)
 
@@ -34,7 +35,12 @@ const router = new Router({
       component: profile
     },
     {
-      path: '/editfundraiser',
+      path: '/menu/:apikey',
+      name: 'menu',
+      component: menu
+    },
+    {
+      path: '/editfundraiser/:name',
       name: 'editfundraiser',
       component: editfundraiser
     },

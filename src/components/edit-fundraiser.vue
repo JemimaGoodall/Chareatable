@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     async updateProfile () {
-      const ref = db.collection('fundraisers').doc(this.user.uname)
+      const ref = db.collection('fundraisers').doc(this.id)
       await ref.update({
         bio: this.bio,
         city: this.city,
@@ -88,12 +88,12 @@ export default {
         country: this.country,
         number: this.number,
         affiliation: this.affiliation,
-        uname: this.uname
+        blah: this.uname
       })
       this.$router.push({ name: "profile", params: { uname: this.uname }})
     },
     async checkAvailability () {
-      let checkname = await db.collection('fundraisers').where("uname", "==", this.uname).get()
+      let checkname = await db.collection('fundraisers').where("blah", "==", this.uname).get()
       if (this.uname == null || this.uname == "") {
         this.unameempty = true
       } else if (checkname.empty || checkname.docs[0].data().uname == this.user.uname) {
@@ -110,6 +110,7 @@ export default {
   },
   data () {
     return {
+      fname: this.$route.params.name,
       bio: null,
       city: null,
       stt: null,
@@ -120,19 +121,21 @@ export default {
       available: null,
       unavailable: null,
       unameempty: null,
+      id: null,
     }
   },
   mounted: function(){
     this.checkAvailability()
   },
   async created(){
+    let fundraiser = await db.collection('fundraisers').where("name", "==", this.fname).get()
+    this.id = fundraiser.docs[0].id
     this.bio = this.user.bio
-    this.city = this.user.city
+    this.city = fundraiser.docs[0].data().city
     this.stt = this.user.stt
     this.country = this.user.country
     this.number = this.user.number
     this.affiliation = this.user.affiliation
-    this.uname = this.user.uname
   }
 }
 </script>
