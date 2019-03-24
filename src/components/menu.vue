@@ -3,13 +3,7 @@
   <div class="splash">
     <div v-if="user">
       <main class="container">
-        <div class="jumbotron">
-          <form>
-            <div class="mb-3">
-              <textarea class="form-control" rows="1" id="search" v-model="address" @input="emptyCheck()"></textarea>
-            </div>
-          </form>
-        </div>
+        
         <div class="container" v-if="searchComplete">
           <div class="jumbotron">
             <div v-for="item in items" :key="item.id" class="card mb-4 box-shadow">
