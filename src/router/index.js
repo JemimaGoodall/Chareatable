@@ -35,11 +35,13 @@ const router = new Router({
       component: profile
     },
     {
+
       path: '/menu/:apikey',
       name: 'menu',
       component: menu
     },
     {
+
       path: '/editfundraiser/:name',
       name: 'editfundraiser',
       component: editfundraiser

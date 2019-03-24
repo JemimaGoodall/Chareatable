@@ -1,64 +1,64 @@
 <template>
   <div class="container">
-            <h4 class="mb-3">User as,dfasdlk;fjs</h4>
+            <h4 class="mb-3">Edit Fundraiser</h4>
             <form v-if="user">
               <div class="row">
                 <div class="col-md-auto mb-3">
-                  <label for="username">Username</label>
+                  <label for="username">Fundraiser name</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">@</span>
                     </div>
-                    <input type="text" class="form-control" id="username" v-model="uname" @input="checkAvailability()">
+                    <input type="text" class="form-control" id="username" v-model="fname" @input="checkAvailability()">
                     <div class="availability">
-                      <i v-if="unameempty" class="material-icons red">close</i>
+                      <i v-if="fnameempty" class="material-icons red">close</i>
                       <i v-else-if="available" class="material-icons green">check</i>
                       <i v-else-if="unavailable" class="material-icons red">close</i>
                     </div>
                   </div>
-                  <p v-if="unameempty" class="red availability">Enter a Username</p>
-                  <p v-else-if="available" class="green availability">Username available!</p>
-                  <p v-else-if="unavailable" class="red availability">Username unavailable!</p>
+                  <p v-if="fnameempty" class="red availability">Enter a Username</p>
+                  <p v-else-if="available" class="green availability">Name available!</p>
+                  <p v-else-if="unavailable" class="red availability">Name unavailable!</p>
                 </div>
               </div>
               <div class="mb-3">
-                <label for="bio">Short Introduction</label>
-                <textarea class="form-control" rows="5" id="bio" v-model="bio"></textarea>
+                <label for="bio">Fundraising description</label>
+                <textarea class="form-control" rows="5" id="bio" v-model="description"></textarea>
               </div>
               <div class="row">
                 <div class="col-md-4 mb-3">
-                  <label for="city">City</label>
-                  <input type="text" class="form-control" id="city" v-model="city">
+                  <label for="city">Start Date</label>
+                  <input type="text" class="form-control" id="city" v-model="startMonth" placeholder="mm">
                 </div>
                 <div class="col-md-4 mb-3">
-                  <label for="state">State</label>
-                  <input type="text" class="form-control" id="state" v-model="stt">
+                  <label for="state"></label>
+                  <input type="text" class="form-control" id="state" v-model="startDay" placeholder="dd">
                 </div>
                 <div class="col-md-4 mb-3">
-                  <label for="country">Country</label>
-                  <input type="text" class="form-control" id="country" v-model="country">
+                  <label for="country"></label>
+                  <input type="text" class="form-control" id="country" v-model="startYear" placeholder="yy">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4 mb-3">
-                  <label for="number">Phone Number</label>
-                  <input type="text" class="form-control" id="number" v-model="number">
+                  <label for="city">End Date</label>
+                  <input type="text" class="form-control" id="city" v-model="endMonth" placeholder="mm">
                 </div>
                 <div class="col-md-4 mb-3">
-                  <label for="affiliation">Current Affiliation</label>
-                  <input type="text" class="form-control" id="affiliation" placeholder="University/College/Company" v-model="affiliation">
+                  <label for="state"></label>
+                  <input type="text" class="form-control" id="state" v-model="endDay" placeholder="dd">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="country"></label>
+                  <input type="text" class="form-control" id="country" v-model="endYear" placeholder="yy">
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="number">Restaurant</label>
+                  <input type="text" class="form-control" id="number" v-model="restaurant">
+                </div>
 
-              <div class="row">
-                <div class="col-md-4 mb-3">
-                  <label for="number">User</label>
-                  <input type="text" class="form-control" id="number" v-model="number">
-                </div>
-                <div class="col-md-4 mb-3">
-                  <label for="affiliation">Current Affiliation</label>
-                  <input type="text" class="form-control" id="affiliation" placeholder="University/College/Company" v-model="affiliation">
-                </div>
               </div>
 
 
@@ -80,62 +80,72 @@ export default {
   },
   methods: {
     async updateProfile () {
-      const ref = db.collection('fundraisers').doc(this.id)
+
+      const ref = db.collection('fundraisers')
       await ref.update({
-        bio: this.bio,
-        city: this.city,
-        stt: this.stt,
-        country: this.country,
-        number: this.number,
-        affiliation: this.affiliation,
-        blah: this.uname
+        description: this.description,
+        startMonth: this.startMonth,
+        startDay: this.startDay,
+        startYear: this.startYear,
+        endMonth: this.endMonth,
+        endDay: this.endDay,
+        endYear: this.endYear
+        restaurant: this.restaurant,
+        fname: this.fname,
+
       })
-      this.$router.push({ name: "profile", params: { uname: this.uname }})
+      this.$router.push({ name: "fundraiser", params: { fname: this.fname }})
     },
     async checkAvailability () {
-      let checkname = await db.collection('fundraisers').where("blah", "==", this.uname).get()
-      if (this.uname == null || this.uname == "") {
-        this.unameempty = true
-      } else if (checkname.empty || checkname.docs[0].data().uname == this.user.uname) {
+
+      let checkname = await db.collection('fundraisers').where("fname", "==", this.fname).get()
+      if (this.fname == null || this.fname == "") {
+        this.fnameempty = true
+      } else if (checkname.empty) {
+
         this.available = true
-        this.unameempty = false
+        this.fnameempty = false
         this.unavailable = false
       }
       else {
         this.available = false
-        this.unameempty = false
+        this.fnameempty = false
         this.unavailable = true
       }
     }
   },
   data () {
     return {
+      description: null,
+      startMonth: null,
+      startDay: null,
+      startYear: null,
+      endMonth: null,
+      endDay: null,
+      endDayYear: null,
+      restaurant: null,
       fname: this.$route.params.name,
-      bio: null,
-      city: null,
-      stt: null,
-      country: null,
-      number: null,
-      affiliation: null,
-      uname: null,
       available: null,
       unavailable: null,
-      unameempty: null,
-      id: null,
+      fnameempty: null,
+
     }
   },
   mounted: function(){
     this.checkAvailability()
   },
   async created(){
-    let fundraiser = await db.collection('fundraisers').where("name", "==", this.fname).get()
-    this.id = fundraiser.docs[0].id
-    this.bio = this.user.bio
-    this.city = fundraiser.docs[0].data().city
-    this.stt = this.user.stt
-    this.country = this.user.country
-    this.number = this.user.number
-    this.affiliation = this.user.affiliation
+
+    let fundraiser = await db.collection('fundraisers').where("fname" == this.fname).get()
+    this.description = fundraiser.description
+    this.startMonth = fundraiser.startMonth
+    this.startDay = fundraiser.startDay
+    this.startYear = fundraiser.startYear
+    this.endMonth = fundraiser.endMonth
+    this.endDay = fundraiser.endDay
+    this.endYear = fundraiser.endYear
+    this.restaurant = fundraiser.restaurant
+
   }
 }
 </script>
