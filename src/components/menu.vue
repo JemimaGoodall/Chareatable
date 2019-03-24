@@ -7,10 +7,10 @@
               <div class="card-header">
                 <h2 class="my-0 font-weight-normal">{{item.name}}</h2>
                 <h2 class="my-0 font-weight-normal">{{item.description}}</h2>
-                <h2 class="my-0 font-weight-normal">{{item.price}}</h2>
+                <h2 class="my-0 font-weight-normal">{{item.basePrice}}</h2>
               </div>
               <div class="card-body">
-                <router-link :to="{ name: 'order', params: {apikey: apikey, menuapi: item.apiKey, restname: restname} }">
+                <router-link :to="{ name: 'order', params: {apikey: apikey, menuapi: item.apiKey, menuname: item.name, menuprice: item.basePrice, restname: restname} }">
                   <button class="btn btn-lg btn-block btn-primary">Order</button>
                 </router-link>
               </div>

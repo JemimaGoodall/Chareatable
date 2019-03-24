@@ -58,6 +58,10 @@
                   <label for="number">Restaurant</label>
                   <input type="text" class="form-control" id="number" v-model="restaurant">
                 </div>
+                <div class="col-md-4 mb-3">
+                  <label for="code">Coupon code</label>
+                  <input type="text" class="form-control" id="country" v-model="code">
+                </div>
 
               </div>
 
@@ -92,6 +96,7 @@ export default {
         endDay: this.endDay,
         endYear: this.endYear,
         restaurant: this.restaurant,
+        code: this.code,
         fname: this.fname,
 
       })
@@ -125,6 +130,7 @@ export default {
       endDay: null,
       endYear: null,
       restaurant: null,
+      code: nul,
       fname: this.$route.params.name,
       available: null,
       unavailable: null,
@@ -145,6 +151,7 @@ export default {
     this.endDay = fundraiser.docs[0].data().endDay
     this.endYear = fundraiser.docs[0].data().endYear
     this.restaurant = fundraiser.docs[0].data().restaurant
+    this.code = fundraiser.docs[0].data().code
 
   }
 }

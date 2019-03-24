@@ -52,6 +52,10 @@
                   <label for="country"></label>
                   <input type="text" class="form-control" id="country" v-model="endYear" placeholder="yy">
                 </div>
+                <div class="col-md-4 mb-3">
+                  <label for="code">Coupon code</label>
+                  <input type="text" class="form-control" id="country" v-model="code">
+                </div>
               </div>
               <div class="row">
                 <div class="col-md-4 mb-3">
@@ -64,7 +68,7 @@
 
               <hr class="mb-4">
             </form>
-            <button :disabled="unavailable||fnameempty" class="btn btn-primary btn-lg btn-block col-md-3" type="submit" @click="updateProfile()">Update</button>
+            <button :disabled="unavailable||fnameempty" class="btn btn-primary btn-lg btn-block col-md-3" type="submit" @click="updateProfile()">Create</button>
           </div>
 </template>
 
@@ -89,6 +93,7 @@ export default {
         endMonth: this.endMonth,
         endDay: this.endDay,
         endYear: this.endYear,
+        code: this.code,
         restaurant: this.restaurant,
         fname: this.fname,
         creator: this.user.uname
@@ -121,6 +126,7 @@ export default {
       endYear: null,
       endMonth: null,
       restaurant: null,
+      code: null,
       fname: null,
       available: null,
       unavailable: null,

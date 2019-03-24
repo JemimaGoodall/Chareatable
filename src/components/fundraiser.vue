@@ -14,6 +14,8 @@
       <p class="content">{{endYear}}</p>
       <h4 class="section-head">Fundraising Organizer</h4>
       <p class="content">{{organizer}}</p>
+      <h4 class="section-head">Coupon code</h4>
+      <p class="content">{{code}}</p>
       <h4 class="section-head">Restaurant Name</h4>
       <p class="content">{{restaurant}}</p>
       <router-link :to="{ name: 'editfundraiser', params: { name: fname }}">
@@ -44,7 +46,8 @@ export default {
       endDay: null,
       endYear: null,
       organizer: null,
-      restaurant: null
+      restaurant: null,
+      code: null,
     }
   },
   async created(){
@@ -57,6 +60,7 @@ export default {
     this.endDay = fundraiser.docs[0].data().endDay
     this.endYear = fundraiser.docs[0].data().endYear
     this.restaurant = fundraiser.docs[0].data().restaurant
+    this.code = fundraiser.docs[0].data().code
     this.organizer = fundraiser.docs[0].data().creator
   }
 }
